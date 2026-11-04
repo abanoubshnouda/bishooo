@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دعوة زفاف | بيشوي & هايدي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #4a131a;
+      --primary-dark: #320a10;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --bg-cream: #faf7f2;
+      --card-bg: #5c1822;
+      --text-gold: #e8c872;
+      --text-dark: #2c2523;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background-color: var(--bg-cream);
+      position: relative;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      padding-bottom: 40px;
+    }
+
+    /* شاشة المظروف والختم الشمعي */
+    #envelope-screen {
+      position: fixed;
+      inset: 0;
+      max-width: 480px;
+      margin: 0 auto;
+      background: #4a131a url('emg/envelope-cover.webp') center/cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .wax-seal {
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #731e28 0%, #3f0e14 100%);
+      border: 3px solid #8e2b37;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      animation: pulse 1.8s infinite;
+      position: relative;
+      top: 185px;
+    }
+
+    .wax-seal i {
+      font-size: 32px;
+      color: var(--gold);
+      
+    }
+
+    .seal-hint {
+      color: var(--gold-light);
+      margin-top: 15px;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      padding-top: 200px;
+      
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    /* زر تشغيل الموسيقى العائم */
+    .audio-toggle {
+      position: fixed;
+      bottom: 25px;
+      right: calc(50% - 220px);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 480px) {
+      .audio-toggle { right: 20px; }
+    }
+
+    /* الكارت الرئيسي للدعوة */
+    .hero-card {
+      padding: 30px 20px 20px;
+      text-align: center;
+       background: url('emg/WhatsApp\ Image\ 2026-09-07\ at\ 10.02.19\ PM.jpeg') center center/cover; 
+      position: relative;
+    }
+
+    .names-title {
+      font-family: 'Amiri', serif;
+      font-size: 2.6rem;
+      color: var(--primary);
+      margin: 15px 0;
+      font-weight: 700;
+    }
+
+    .names-title span {
+      font-size: 1.5rem;
+      display: block;
+      color: var(--gold);
+    }
+
+    /* أقسام المعلومات الداكنة */
+    .dark-card {
+      background: var(--card-bg);
+      color: #fff;
+      border-radius: 20px;
+      margin: 15px;
+      padding: 25px 20px;
+      text-align: center;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 8px 20px rgba(74, 19, 26, 0.15);
+    }
+
+    .card-heading {
+      font-family: 'Amiri', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    .card-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      width: 50%;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .parents-grid {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .parents-col h4 {
+      color: var(--gold-light);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .invitation-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #f7ebeb;
+      margin: 15px 0;
+    }
+
+    .event-timing {
+      color: var(--gold);
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    /* عداد تنازلي */
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .count-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 10px;
+      border-radius: 10px;
+      min-width: 60px;
+    }
+
+    .count-num {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--gold-light);
+    }
+
+    .count-label {
+      font-size: 0.75rem;
+      color: #eee;
+    }
+
+    /* برنامج الحفل */
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    /* لوحة الألوان */
+    .dress-palette {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .color-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    /* الأزرار وسجل التهاني */
+    .btn-action {
+      background: linear-gradient(135deg, #d4af37, #b8972e);
+      color: #3b0910;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      transition: transform 0.2s;
+    }
+
+    .btn-action:active {
+      transform: scale(0.98);
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+
+    /* صندوق الهدية التفاعلي */
+    .gift-box-container {
+      text-align: center;
+      padding: 25px;
+      cursor: pointer;
+    }
+
+    .gift-icon {
+      font-size: 40px;
+      color: var(--card-bg);
+      transition: transform 0.3s;
+    }
+
+    .gift-box-container:hover .gift-icon {
+      transform: translateY(-5px);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <div id="envelope-screen">
+    <div class="wax-seal" onclick="openInvitation()">
+      <i class="fa-solid fa-seedling"></i>
+    </div>
+    <div class="seal-hint" >اضغط على الختم لفتح الدعوة</div>
+  </div>
+
+  <audio id="wedding-audio" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+  <div class="audio-toggle" onclick="toggleAudio()">
+    <i id="audio-icon" class="fa-solid fa-volume-high"></i>
+  </div>
+
+  <section class="hero-card">
+    <p style="color: var(--gold); letter-spacing: 2px;">يـوم الـزفـاف</p>
+    <h1 class="names-title">
+      بيشوي
+      <span>&</span>
+      هايدي
+    </h1>
+  </section>
+
+  <div class="dark-card">
+    <h3 class="card-heading">معلومات الحفل</h3>
+    <div class="parents-grid">
+      <div class="parents-col">
+        <h4>أهل العريس</h4>
+        <p>اسم والد العريس</p>
+        <p>اسم والدة العريس</p>
+      </div>
+      <div class="parents-col">
+        <h4>أهل العروس</h4>
+        <p>اسم والد العروس</p>
+        <p>اسم والدة العروس</p>
+      </div>
+    </div>
+
+    <p class="invitation-body">
+      المهندس بيشوي والاستاذه هايدي<br>
+      يسعدهما ويشرفهما أن يدعوا حضرتكم الكريمة لمشاركتهما فرحة حفل زفافهما.
+    </p>
+
+    <div class="event-timing">
+      وذلك بمشيئة الله تعالى يوم الأحد 5 مايو 2027<br>
+      الساعة الثامنه مساءً • بقاعة النموذج
+    </div>
+  </div>
+
+  <div class="dark-card">
+    <h3 class="card-heading">العد التنازلي</h3>
+    <div class="countdown-grid">
+      <div class="count-box">
+        <div class="count-num" id="days">00</div>
+        <div class="count-label">أيام</div>
+      </div>
+      <div class="count-box">
+        <div class="count-num" id="hours">00</div>
+        <div class="count-label">ساعات</div>
+      </div>
+      <div class="count-box">
+        <div class="count-num" id="minutes">00</div>
+        <div class="count-label">دقائق</div>
+      </div>
+      <div class="count-box">
+        <div class="count-num" id="seconds">00</div>
+        <div class="count-label">ثواني</div>
+      </div>
+    </div>
+    <button class="btn-action" style="margin-top: 20px;" onclick="alert('تم حفظ الموعد في التقويم')">
+      <i class="fa-regular fa-calendar-check"></i> أضف إلى التقويم
+    </button>
+  </div>
+
+  <div class="dark-card">
+    <h3 class="card-heading">برنامج اليوم</h3>
+    <div class="timeline-item">
+      <span>الاستقبال</span>
+      <span>07:00 م</span>
+    </div>
+    <div class="timeline-item">
+      <span>عقد الاكليل</span>
+      <span>08:00 م</span>
+    </div>
+    <div class="timeline-item">
+      <span>حفل الكوكتيل</span>
+      <span>09:00 م</span>
+    </div>
+    <div class="timeline-item">
+      <span>العشاء</span>
+      <span>03:00 م</span>
+    </div>
+    <div class="timeline-item">
+      <span>الحفلة</span>
+      <span>09:00 م</span>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin: 20px 0;">
+    <h4 style="color: var(--primary);">قواعد اللباس</h4>
+    <p style="font-size: 0.85rem; color: #666; margin-bottom: 8px;">ملابس الحفل المعتمدة</p>
+    <div class="dress-palette">
+      <span class="color-dot" style="background-color: #f7ebe1;"></span>
+      <span class="color-dot" style="background-color: #2b2b2b;"></span>
+      <span class="color-dot" style="background-color: #5c1822;"></span>
+    </div>
+  </div>
+
+  <div style="padding: 0 15px; margin-bottom: 25px;">
+    <h4 style="color: var(--primary); text-align: center; margin-bottom: 12px;">مكان حفل الاستقبال</h4>
+    <div style="border-radius: 12px; overflow: hidden; height: 180px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <iframe 
+        width="100%" 
+        height="100%" 
+        frameborder="0" 
+        style="border:0"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110502.61185045051!2d31.25846435!3d30.0594828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa60b21beeb%3A0x79dfb296e8423bba!2sCairo%2C%20Cairo%20Governorate%2C%20Egypt!5e0!3m2!1sen!2seg!4v1700000000000" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <div style="padding: 0 15px; margin-bottom: 30px;">
+    <div style="background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <h3 style="color: var(--primary); margin-bottom: 15px; text-align: center;">سجل التهاني</h3>
+      <input type="text" class="input-box" placeholder="أدخل اسمك الكريم" id="guest-name" />
+      <textarea class="input-box" rows="3" placeholder="اكتب تهنئتك هنا..." id="guest-wish"></textarea>
+      <button class="btn-action" onclick="submitWish()">إرسال التهنئة</button>
+    </div>
+  </div>
+
+  <div class="gift-box-container" onclick="openGift()">
+    <i class="fa-solid fa-gift" style="color: rgb(104, 6, 59);"></i>
+    <p id="gift-text" style="color: var(--primary); font-weight: 500; margin-top: 8px;">اضغط للفتح</p>
+    <div id="gift-message" class="hidden" style="margin-top: 10px; color: var(--gold); font-size: 0.95rem;">
+      شكراً لحضوركم الذي زين ليلتنا ❤️
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // فتح المظروف وتشغيل الصوت
+  function openInvitation() {
+    const envelope = document.getElementById('envelope-screen');
+    const audio = document.getElementById('wedding-audio');
+
+    envelope.style.opacity = '0';
+    setTimeout(() => {
+      envelope.style.display = 'none';
+    }, 800);
+
+    audio.play().catch(() => {
+      console.log('Autoplay prevented');
+    });
+  }
+
+  // كتم / تشغيل الصوت
+  function toggleAudio() {
+    const audio = document.getElementById('wedding-audio');
+    const icon = document.getElementById('audio-icon');
+
+    if (audio.paused) {
+      audio.play();
+      icon.className = 'fa-solid fa-volume-high';
+    } else {
+      audio.pause();
+      icon.className = 'fa-solid fa-volume-xmark';
+    }
+  }
+
+  // حساب العد التنازلي إلى 15 نوفمبر 2026
+  const targetDate = new Date('May 5, 2027 18:00:00').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = days;
+      document.getElementById('hours').innerText = hours;
+      document.getElementById('minutes').innerText = minutes;
+      document.getElementById('seconds').innerText = seconds;
+    }
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // إرسال التهنئة
+  function submitWish() {
+    const name = document.getElementById('guest-name').value.trim();
+    if (!name) {
+      alert('يرجى إدخال الاسم');
+      return;
+    }
+    alert('شكراً لك على مشاعرك الطيبة وتهنئتك الرقيقة!');
+    document.getElementById('guest-name').value = '';
+    document.getElementById('guest-wish').value = '';
+  }
+
+  // فتح صندوق الهدية
+  function openGift() {
+    const msg = document.getElementById('gift-message');
+    const txt = document.getElementById('gift-text');
+    msg.classList.toggle('hidden');
+    txt.innerText = msg.classList.contains('hidden') ? 'اضغط للفتح' : 'اضغط للإغلاق';
+  }
+</script>
+
+</body>
+</html>
